@@ -181,6 +181,9 @@
          <height>30</height>
         </size>
        </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
       </widget>
      </item>
      <item row="1" column="0">
@@ -203,6 +206,9 @@
          <width>220</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="maxLength">
+        <number>8</number>
        </property>
       </widget>
      </item>
@@ -227,6 +233,9 @@
          <height>30</height>
         </size>
        </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
       </widget>
      </item>
      <item row="3" column="0">
@@ -249,6 +258,9 @@
          <width>220</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
        </property>
       </widget>
      </item>
@@ -273,6 +285,19 @@
          <height>30</height>
         </size>
        </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
+       <property name="displayFormat">
+        <string>dd.MM.yyyy</string>
+       </property>
+       <property name="date">
+        <date>
+         <year>1950</year>
+         <month>10</month>
+         <day>12</day>
+        </date>
+       </property>
       </widget>
      </item>
      <item row="5" column="0">
@@ -295,6 +320,9 @@
          <width>220</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="maxLength">
+        <number>100</number>
        </property>
       </widget>
      </item>
@@ -319,6 +347,9 @@
          <height>30</height>
         </size>
        </property>
+       <property name="maxLength">
+        <number>100</number>
+       </property>
       </widget>
      </item>
      <item row="7" column="0">
@@ -341,6 +372,9 @@
          <width>220</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="maxLength">
+        <number>100</number>
        </property>
       </widget>
      </item>
