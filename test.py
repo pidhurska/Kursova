@@ -1,23 +1,12 @@
-import sys
-import sys
-from PyQt5 import QtWidgets, QtCore, uic
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
 
+import pymongo
 
-def mes_war():
-    app = QApplication ( sys.argv )
-    msg = QMessageBox ()
-    msg.setIcon ( QMessageBox.Warning )
-    msg.setWindowTitle ( "Warning" )
-    msg.setText ( "You didn`t fill all entry fields" )
-    msg.setStandardButtons ( QMessageBox.Ok )
-    retval = msg.exec_ ()
+sls = "mongodb+srv://Anastasia:20000103n!@cluster0-voyl5.mongodb.net/test?retryWrites=true&ssl_match_hostname=false&ssl_cert_reqs=CERT_NONE"
+client = pymongo.MongoClient ( sls )
+db = client.My_mogo
+db2 = db.My_mogo
 
+#doc = {"Login": "astia", "Password": "20000103","Name": "Anastasia","Surname": "Pidgu", "Facebook": "",}
+#post_id = db2.insert_one (doc ).inserted_id
 
-
-
-
-if __name__ == '__main__':
-    mes_war ()
+print(db2.find({"Name":"astia"}).count())
