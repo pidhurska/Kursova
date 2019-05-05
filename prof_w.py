@@ -6,6 +6,9 @@ from PyQt5 import QtWidgets, QtCore, uic
 
 from PyQt5.QtCore import *
 from Kursova.mes import *
+from Kursova.feed_w import *
+from Kursova.test_my import *
+from Kursova.choose_ticket import *
 
 
 
@@ -14,6 +17,11 @@ class MainPWindow( QtWidgets.QMainWindow ):
         super(MainPWindow, self).__init__(parent)
         self.ui_profile = uic.loadUi( "profile.ui" )
         self.ui_add_info = Addinfo(self)
+        self.feed = Feed(self)
+        self.ui_test = MyTest(self)
+        self.ui_ckoose_t = Choose_t(self)
+        self.start_test = self.ui_profile.pushButton_5
+        self.start_test.clicked.connect(self.ui_test.show_prof)
 
 
 
@@ -27,16 +35,22 @@ class MainPWindow( QtWidgets.QMainWindow ):
         self.my_client = f.read()
         f.close ()
 
+        """4 main button"""
+        self.feedback = self.ui_profile.pushButton_4
+        self.feedback.clicked.connect(self.feed.show_f)
+
+        self.choose_t = self.ui_profile.pushButton_2
+        self.choose_t.clicked.connect ( self.ui_ckoose_t.show_f)
+
+        self.my_t = self.ui_profile.pushButton_3
+
         """My veraibles for prog"""
-        self.additional_inf = ""
         self.info_db  = ""
         self.facebook = ""
         self.instagram = ""
         self.linkedin = ""
         self.photo = ""
-        self.add_info = self.ui_profile.pushButton_5
-        self.add_info.clicked.connect(self.ui_add_info.show_prof)
-        self.additional ()
+
         self.my_data()
 
 
@@ -48,6 +62,7 @@ class MainPWindow( QtWidgets.QMainWindow ):
         myScaledPixmap = pixmap.scaled ( self.foto.size (), Qt.KeepAspectRatio )
         self.foto.setPixmap ( myScaledPixmap )
         self.ui_profile.label_2.setText(str(self.info_db))
+
         #for links
 
         facebook_url = '<a href='+str(self.facebook)+'>Facebook</a>'
@@ -66,37 +81,21 @@ class MainPWindow( QtWidgets.QMainWindow ):
         self.label5.setOpenExternalLinks ( True )
 
 
-        self.label6 = self.ui_profile.label_6
-        self.label6.setText(self.additional_inf)
-
-
-    def additional(self):
-        f = open ( 'logdata.txt', 'r' )
-        self.additional_inf = f.read ()
-        if self.additional_inf != "":
-            for i in self.base.find({"Login": str(self.my_client)}):
-                self.base.update ({},{"$set":{"Additional": str(self.additional_inf)} })
-        f.close ()
-
 
     def my_data(self):
-
         for client in self.base.find({"Login": str(self.my_client)}):
             self.info_db = client["Name"] + "  " + client["Surname"] + "  " + client["Years"] + "  " + "years"
             self.photo = client["Photo"]
             self.facebook = client["Facebook"]
             self.instagram = client["Instagram"]
             self.linkedin = client["Linkedin"]
-            self.additional_inf = client["Additional"]
-            self.additional ()
             self.my_inform()
-
-
-
 
 
     def show_prof(self):
         self.ui_profile.show()
+
+
 
 
 

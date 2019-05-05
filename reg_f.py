@@ -12,6 +12,7 @@ from Kursova.mes import *
 class MainRWindow( QtWidgets.QMainWindow ):
     def __init__(self, parent = None):
         super(MainRWindow, self).__init__(parent)
+
         self.test = 0
         self.ui_reg_w = uic.loadUi( "reg_w.ui" )
         self.textboxValue_l =" "
@@ -24,9 +25,12 @@ class MainRWindow( QtWidgets.QMainWindow ):
         self.textboxValue_d =" "
         self.war = Warning_d( self )
         self.war2 = Warning_a(self)
+
         self.photo = "/Users/anastasiapidgurska/університет/ТП/Kursova/?photo.png"
         self.setPhoto()
         self.form()
+
+
 
 
         """All for mongodb"""
@@ -54,7 +58,6 @@ class MainRWindow( QtWidgets.QMainWindow ):
 
     def form(self):
         self.ui_reg_w.pushButton_3.clicked.connect( self.openFile )
-
         "Text from buttons"
 
         self.button = self.ui_reg_w.pushButton_2
@@ -119,8 +122,12 @@ class MainRWindow( QtWidgets.QMainWindow ):
                         "Name": str ( self.textboxValue_n ),
                         "Surname": str ( self.textboxValue_s ), "Facebook": str ( self.textboxValue_f ),
                         "Instagram": str ( self.textboxValue_i ),"Linkedin": str ( self.textboxValue_lki ),
-                        "Years": str ( self.textboxValue_d ), "Photo": str(self.photo),"Additional": " "}
-            #self.post_id = self.db2.insert_one ( self.doc ).inserted_id
+                        "Years": str ( self.textboxValue_d ), "Photo": str(self.photo),"Test": " ","Tickets" : " "}
+            self.post_id = self.db2.insert_one ( self.doc ).inserted_id
+
+
+            self.trains = {"Train1": "NKI608","Time": " ", "Price": "100"}
+            self.post_id2 = self.db2.insert_one ( self.trains).inserted_id
 
             self.ui_reg_w.close()
         else:

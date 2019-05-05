@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets, QtCore, uic
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QPixmap
+import pymongo
 
 class Warning_drl( QtWidgets.QMainWindow ):
     def __init__(self, parent = None):
@@ -28,7 +28,7 @@ class Warning_d( QtWidgets.QMainWindow ):
         self.msg = QMessageBox ()
         self.msg.setIcon ( QMessageBox.Warning )
         self.msg.setWindowTitle ( "Warning" )
-        self.msg.setText ( "You did not fill right entry fields \n Your string must content min 6 characters", )
+        self.msg.setText ( "You did not fill right entry fields \n Your string must content min 4 characters", )
 
 
 
@@ -51,13 +51,57 @@ class Warning_a( QtWidgets.QMainWindow ):
         self.msg.show()
 
 
+class Warning_city( QtWidgets.QMainWindow ):
+    def __init__(self, parent = None):
+        super(Warning_city, self).__init__(parent)
+        self.app = QApplication ( sys.argv )
+        self.msg = QMessageBox ()
+        self.msg.setIcon ( QMessageBox.Warning )
+        self.msg.setWindowTitle ( "Warning" )
+        self.msg.setText ( "Your choose same city", )
+
+
+
+    def show_prof(self):
+        self.msg.show()
+
+class Warning_data( QtWidgets.QMainWindow ):
+    def __init__(self, parent = None):
+        super(Warning_data, self).__init__(parent)
+        self.app = QApplication ( sys.argv )
+        self.msg = QMessageBox ()
+        self.msg.setIcon ( QMessageBox.Warning )
+        self.msg.setWindowTitle ( "Warning" )
+        self.msg.setText ( "Your choose wrong data", )
+
+
+
+    def show_prof(self):
+        self.msg.show()
+
+class Warning_train( QtWidgets.QMainWindow ):
+    def __init__(self, parent = None):
+        super(Warning_train, self).__init__(parent)
+        self.app = QApplication ( sys.argv )
+        self.msg = QMessageBox ()
+        self.msg.setIcon ( QMessageBox.Warning )
+        self.msg.setWindowTitle ( "Warning" )
+        self.msg.setText ( "Your choose same city", )
+
+
+
+    def show_prof(self):
+        self.msg.show()
+
+
+
 class Addinfo( QtWidgets.QMainWindow ):
     def __init__(self, parent = None):
         super(Addinfo, self).__init__(parent)
 
         self.ui_add = uic.loadUi( "add_info_w.ui" )
         self.text1=self.ui_add.lineEdit
-        self.test_event = 0
+
 
         self.button_ok = self.ui_add.pushButton
         self.button_ok.clicked.connect ( self.on_click )
@@ -72,6 +116,7 @@ class Addinfo( QtWidgets.QMainWindow ):
 
     def show_prof(self):
         self.ui_add.show ()
+
 
 
 
