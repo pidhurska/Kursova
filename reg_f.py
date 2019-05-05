@@ -6,13 +6,26 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QPixmap
 import pymongo
 import datetime
+from Kursova.mes import *
 
 
 class MainRWindow( QtWidgets.QMainWindow ):
     def __init__(self, parent = None):
         super(MainRWindow, self).__init__(parent)
         self.test = 0
-        self.ui = uic.loadUi("reg_w.ui")
+        self.ui_reg_w = uic.loadUi( "reg_w.ui" )
+        self.textboxValue_l =" "
+        self.textboxValue_p =" "
+        self.textboxValue_n =" "
+        self.textboxValue_s =" "
+        self.textboxValue_f =" "
+        self.textboxValue_i =" "
+        self.textboxValue_lki=" "
+        self.textboxValue_d =" "
+        self.war = Warning_d( self )
+        self.war2 = Warning_a(self)
+        self.photo = "/Users/anastasiapidgurska/університет/ТП/Kursova/?photo.png"
+        self.setPhoto()
         self.form()
 
 
@@ -24,54 +37,49 @@ class MainRWindow( QtWidgets.QMainWindow ):
 
     """for enother window"""
     def show_my_reg(self):
-        self.ui.show()
+        self.ui_reg_w.show()
 
     """Open directory for photo"""
     def openFile(self):
         self.fileD = QFileDialog.getOpenFileName(self,"Open file",'/', "*.jpg *.png")
         self.photo = self.fileD[0]
-        self.foto = self.ui.label_9
-        pixmap = QPixmap( self.photo )
+        self.setPhoto()
+
+    def setPhoto(self):
+        self.foto = self.ui_reg_w.label_9
+        pixmap = QPixmap ( self.photo )
         myScaledPixmap = pixmap.scaled ( self.foto.size (), Qt.KeepAspectRatio )
         self.foto.setPixmap ( myScaledPixmap )
 
 
     def form(self):
-        self.ui.pushButton_3.clicked.connect(self.openFile)
+        self.ui_reg_w.pushButton_3.clicked.connect( self.openFile )
 
         "Text from buttons"
 
-        self.button = self.ui.pushButton_2
-        self.login = self.ui.lineEdit_8
-        self.name = self.ui.lineEdit_4
-        self.surname = self.ui.lineEdit_3
-        self.password = self.ui.lineEdit
+        self.button = self.ui_reg_w.pushButton_2
+        self.login = self.ui_reg_w.lineEdit_8
+        self.name = self.ui_reg_w.lineEdit_4
+        self.surname = self.ui_reg_w.lineEdit_3
+        self.password = self.ui_reg_w.lineEdit
         self.password.setEchoMode (2 )
-        self.facebook = self.ui.lineEdit_5
-        self.instagram = self.ui.lineEdit_6
-        self.linkedin = self.ui.lineEdit_7
+        self.facebook = self.ui_reg_w.lineEdit_5
+        self.instagram = self.ui_reg_w.lineEdit_6
+        self.linkedin = self.ui_reg_w.lineEdit_7
         self.button.clicked.connect ( self.on_click )
 
 
 
     def adge(self):
-        temp_var = self.ui.dateEdit.date ()
+        temp_var = self.ui_reg_w.dateEdit.date ()
         nowd = datetime.date.today()
         nowy = nowd.year
         pre = temp_var.toPyDate()
         pre2 = pre.year
         years = int(nowy) - int(pre2)
-        print(nowy, pre2 , years)
         self.date_b = years
 
-    def mes_war(self):
-        app = QApplication ( sys.argv )
-        msg = QMessageBox ()
-        msg.setIcon ( QMessageBox.Warning )
-        msg.setWindowTitle ( "Warning" )
-        msg.setText ( "You did not fill right entry fields \n Your string must content min 6 characters", )
-        msg.setStandardButtons ( QMessageBox.Ok )
-        retval = msg.exec_ ()
+
 
 
     def on_click(self):
@@ -93,27 +101,29 @@ class MainRWindow( QtWidgets.QMainWindow ):
         deck.append(self.textboxValue_i)
         deck.append(self.textboxValue_lki)
         deck.append(self.textboxValue_d)
+        self.count_log = self.db2.find ( {"Login": str ( self.textboxValue_l )} ).count ()
         self.test = 0
-        for i in range(len(deck)-4):
-            string = "".join (deck[i].split () )
-            print(string)
-            if len ( string ) > 6:
-                self.test+=1
-            else:
-                self.mes_war()
-                break
+        if self.count_log == 0:
+            for i in range(len(deck)-4):
+                string = "".join (deck[i].split () )
+                if len ( string ) > 4:
+                    self.test+=1
+                else:
+                    self.war.show_prof()
+                    break
+        else:
+            self.war2.show_prof()
         if self.test == 4:
             """Add data to mongodb"""
             self.doc = {"Login": str ( self.textboxValue_l ), "Password": str ( self.textboxValue_p ),
                         "Name": str ( self.textboxValue_n ),
                         "Surname": str ( self.textboxValue_s ), "Facebook": str ( self.textboxValue_f ),
-                        "Instagram": str ( self.textboxValue_i ),
-                        "Linkedin": str ( self.textboxValue_lki ), "Years": str ( self.textboxValue_d ),
-                        "Photo": str(self.photo)}
+                        "Instagram": str ( self.textboxValue_i ),"Linkedin": str ( self.textboxValue_lki ),
+                        "Years": str ( self.textboxValue_d ), "Photo": str(self.photo),"Additional": " "}
             #self.post_id = self.db2.insert_one ( self.doc ).inserted_id
 
-            self.ui.close()
+            self.ui_reg_w.close()
         else:
-            self.form()
+            self.war.show_prof ()
 
 

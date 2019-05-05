@@ -9,4 +9,4 @@ db2 = db.My_mogo
 #doc = {"Login": "astia", "Password": "20000103","Name": "Anastasia","Surname": "Pidgu", "Facebook": "",}
 #post_id = db2.insert_one (doc ).inserted_id
 
-print(db2.find({"Name":"astia"}).count())
+print(db2.find({"Login":"astia"}).count())
