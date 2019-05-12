@@ -25,23 +25,14 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <property name="toolTipDuration">
-   <number>0</number>
-  </property>
-  <property name="styleSheet">
-   <string notr="true"/>
-  </property>
-  <property name="animated">
-   <bool>true</bool>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>79</x>
-      <y>179</y>
-      <width>121</width>
-      <height>41</height>
+      <x>220</x>
+      <y>90</y>
+      <width>351</width>
+      <height>511</height>
      </rect>
     </property>
     <property name="font">
@@ -51,74 +42,32 @@
      </font>
     </property>
     <property name="text">
-     <string>Username: </string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>240</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times</family>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Password: </string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>180</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="inputMask">
      <string/>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>32767</number>
-    </property>
-    <property name="frame">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>240</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>310</y>
+      <x>10</x>
+      <y>120</y>
       <width>170</width>
-      <height>60</height>
+      <height>70</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>170</width>
+      <height>70</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>170</width>
+      <height>70</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -127,16 +76,53 @@
      </font>
     </property>
     <property name="text">
-     <string>Login</string>
+     <string>Profile</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>310</y>
+      <x>10</x>
+      <y>200</y>
       <width>170</width>
-      <height>60</height>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>170</width>
+      <height>70</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times</family>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Chose ticket</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>290</y>
+      <width>170</width>
+      <height>70</height>
      </rect>
     </property>
     <property name="font">
@@ -146,7 +132,26 @@
      </font>
     </property>
     <property name="text">
-     <string>Registration</string>
+     <string>My tickets</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>380</y>
+      <width>170</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times</family>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Feedback</string>
     </property>
    </widget>
   </widget>
@@ -162,8 +167,6 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources>
-  <include location="anketa копія.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -2,16 +2,21 @@ import sys
 from PyQt5 import QtWidgets, QtCore, uic
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import *
+
+#import
 from PyQt5.QtWidgets import *
-import pymongo
 
 class Warning_drl( QtWidgets.QMainWindow ):
     def __init__(self, parent = None):
         super(Warning_drl, self).__init__(parent)
+        #Set interface
         self.xapp = QApplication ( sys.argv )
+        #type
         self.msg = QMessageBox ()
         self.msg.setIcon ( QMessageBox.Warning )
+        #Set title
         self.msg.setWindowTitle ( "Warning" )
+        #Set message
         self.msg.setText ( "Login or password isn`t right", )
 
 

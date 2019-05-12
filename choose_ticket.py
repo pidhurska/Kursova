@@ -6,8 +6,10 @@ from PyQt5 import QtWidgets, QtCore, uic
 from Kursova.prof_w import *
 from Kursova.mes import *
 from Kursova.ticket_form import *
+from Kursova.prof_w import *
 from PyQt5.QtCore import *
 import datetime
+from PyQt5 import QtGui
 
 class Choose_t( QtWidgets.QMainWindow ):
     def __init__(self, parent=None):
@@ -16,6 +18,13 @@ class Choose_t( QtWidgets.QMainWindow ):
         self.ui_mes_c = Warning_city(self)
         self.ui_mes_d = Warning_data(self)
         self.ui_mes_notrain = Warning_train(self)
+
+        # setImage
+        palette = QtGui.QPalette ()
+        self.image = QtGui.QImage ( "UI1_1.jpg" )
+        a = self.image.scaled ( self.chst.size () )
+        palette.setBrush ( QtGui.QPalette.Window, QtGui.QBrush ( a ) )
+        self.chst.setPalette ( palette )
 
         self.order = order_my(self)
         # if we have no train

@@ -9,6 +9,7 @@ from Kursova.mes import *
 from Kursova.feed_w import *
 from Kursova.test_my import *
 from Kursova.choose_ticket import *
+from PyQt5 import QtGui
 
 
 
@@ -16,7 +17,26 @@ class MainPWindow( QtWidgets.QMainWindow ):
     def __init__(self, parent = None):
         super(MainPWindow, self).__init__(parent)
         self.ui_profile = uic.loadUi( "profile.ui" )
-        self.ui_add_info = Addinfo(self)
+
+        sls = "mongodb+srv://Anastasia:20000103n!@cluster0-voyl5.mongodb.net/test?retryWrites=true&ssl_match_hostname=false&ssl_cert_reqs=CERT_NONE"
+        self.client = pymongo.MongoClient ( sls )
+        self.base2 = self.client.My_mogo
+        self.base_p = self.base2.My_mogo
+
+        # setImage
+        palette = QtGui.QPalette ()
+        self.image = QtGui.QImage ( "UI1_1.jpg" )
+        a = self.image.scaled ( self.ui_profile.size () )
+        palette.setBrush ( QtGui.QPalette.Window, QtGui.QBrush ( a ) )
+        self.ui_profile.setPalette ( palette )
+
+        """Read data from log ui"""
+        f = open ( 'logdata.txt', 'r' )
+        self.my_client = f.read ()
+        f.close ()
+        self.my_data ()
+
+
         self.feed = Feed(self)
         self.ui_test = MyTest(self)
         self.ui_ckoose_t = Choose_t(self)
@@ -25,15 +45,6 @@ class MainPWindow( QtWidgets.QMainWindow ):
 
 
 
-        sls = "mongodb+srv://Anastasia:20000103n!@cluster0-voyl5.mongodb.net/test?retryWrites=true&ssl_match_hostname=false&ssl_cert_reqs=CERT_NONE"
-        self.client = pymongo.MongoClient ( sls )
-        self.base1 = self.client.My_mogo
-        self.base = self.base1.My_mogo
-
-        """Read data from log ui"""
-        f = open ( 'logdata.txt', 'r' )
-        self.my_client = f.read()
-        f.close ()
 
         """4 main button"""
         self.feedback = self.ui_profile.pushButton_4
@@ -51,7 +62,7 @@ class MainPWindow( QtWidgets.QMainWindow ):
         self.linkedin = ""
         self.photo = ""
 
-        self.my_data()
+
 
 
 
@@ -83,12 +94,13 @@ class MainPWindow( QtWidgets.QMainWindow ):
 
 
     def my_data(self):
-        for client in self.base.find({"Login": str(self.my_client)}):
+        for client in self.base_p.find( {"Login": str( self.my_client )} ):
             self.info_db = client["Name"] + "  " + client["Surname"] + "  " + client["Years"] + "  " + "years"
             self.photo = client["Photo"]
             self.facebook = client["Facebook"]
             self.instagram = client["Instagram"]
             self.linkedin = client["Linkedin"]
+            print("I am there")
             self.my_inform()
 
 

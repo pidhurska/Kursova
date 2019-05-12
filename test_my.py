@@ -1,5 +1,6 @@
 import sys
 from PyQt5 import QtWidgets, QtCore, uic
+from PyQt5 import QtGui
 
 import pymongo
 class MyTest( QtWidgets.QMainWindow ):
@@ -12,6 +13,13 @@ class MyTest( QtWidgets.QMainWindow ):
         self.base = self.base1.My_mogo
 
         self.ui_test = uic.loadUi( "test_w.ui" )
+        # setImage
+        palette = QtGui.QPalette ()
+        self.image = QtGui.QImage ( "UI1_1.jpg" )
+        a = self.image.scaled ( self.ui_test.size () )
+        palette.setBrush ( QtGui.QPalette.Window, QtGui.QBrush ( a ) )
+        self.ui_test.setPalette ( palette )
+
         self.sfears = ["AGRARIAN", "SECURITY","MILITARY", "IT","SPACE AND AVIATION", "BEAUTY AND FASHION", "LIGHT INDUSTRY", "LINGUISTIC","LOGISTICS, FEA, TRADE", "MEDICAL","SEA","SCIENCE","PEDAGOGICAL","FOOD INDUSTRY","POLICY AND STATE SERVICE","WORK WITH PEOPLE","RELATED TO ANIMALS","RELATED TO TRAVEL","MEDIA AND PUBLISHING HOUSE","CREATIVE","SPORT","TECHNICAL","TRANSPORT","ECONOMIC","LEGAL"]
         self.bookj =["Fantasy","Science Fiction","Westerns","Romance","Thriller","Mystery","Detective story","Dystopia","Other"]
         self.filmj =["Action", "Adventure", "Comedy","Crime&Gangsters", "Drama", "Epic", "Horror", "Science fiction","War","Other"]
@@ -97,7 +105,7 @@ class MyTest( QtWidgets.QMainWindow ):
         a = self.activity.currentText ()
         seas = self.season.currentText ()
         pizz = self.pizza.currentText ()
-        spang = self.cities.currentText ()
+        spang = self.spangeBob.currentText ()
         self.list_val = [c,s,b,f,h,t,d,p,a,seas,pizz,spang]
         self.additional()
         self.ui_test.hide()

@@ -7,6 +7,7 @@ from PyQt5.QtGui import QIcon, QPixmap
 import pymongo
 import datetime
 from Kursova.mes import *
+from PyQt5 import QtGui
 
 
 class MainRWindow( QtWidgets.QMainWindow ):
@@ -15,6 +16,15 @@ class MainRWindow( QtWidgets.QMainWindow ):
 
         self.test = 0
         self.ui_reg_w = uic.loadUi( "reg_w.ui" )
+
+        # setImage
+        palette = QtGui.QPalette ()
+        self.image = QtGui.QImage ( "UI1_1.jpg" )
+        a = self.image.scaled ( self.ui_reg_w.size () )
+        palette.setBrush ( QtGui.QPalette.Window, QtGui.QBrush ( a ) )
+        self.ui_reg_w.setPalette ( palette )
+
+
         self.textboxValue_l =" "
         self.textboxValue_p =" "
         self.textboxValue_n =" "
@@ -109,7 +119,7 @@ class MainRWindow( QtWidgets.QMainWindow ):
         if self.count_log == 0:
             for i in range(len(deck)-4):
                 string = "".join (deck[i].split () )
-                if len ( string ) > 4:
+                if len ( string ) > 3:
                     self.test+=1
                 else:
                     self.war.show_prof()
